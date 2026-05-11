@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+sms.sqlite3
+uploads/*
+!uploads/.keep

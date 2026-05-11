@@ -1,0 +1,18 @@
+databases:
+  - name: namutumba-sms-db
+    databaseName: namutumba_sms
+    user: namutumba_sms_user
+
+services:
+  - type: web
+    name: namutumba-sms-online
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: namutumba-sms-db
+          property: connectionString
